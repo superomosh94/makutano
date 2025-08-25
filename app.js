@@ -1,13 +1,15 @@
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
+require("dotenv").config(); // load environment variables from .env
 
+// create database connection using environment variables
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Roguomondo1",
-  database: "socialapp2",
-  port: 3306,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 // middleware
@@ -22,12 +24,14 @@ app.get("/", (req, res) => {
 // add new post to posts in the database
 app.post("/newposts", (req, res) => {
   const { content } = req.body;
+  const postowner = 1; // hardcoded for now; later use logged-in user ID
   const query = "INSERT INTO posts (content, postowner) VALUES (?, ?)";
-  connection.query(query, [content, 1], (err, result) => {
+
+  connection.query(query, [content, postowner], (err, result) => {
     if (err) {
       return res.status(500).send("Error adding post: " + err);
     }
-    res.redirect("/posts"); // redirect once post is added
+    res.redirect("/posts");
   });
 });
 
@@ -58,7 +62,7 @@ app.get("/users", (req, res) => {
   });
 });
 
-// optional dashboard with both
+// optional dashboard with both users and posts
 app.get("/dashboard", (req, res) => {
   connection.query("SELECT * FROM users", (err, users) => {
     if (err) {
@@ -79,4 +83,7 @@ app.use((req, res) => {
 });
 
 // start the app
-app.listen(3003, () => console.log("App running on http://127.0.0.1:3003"));
+app.listen(3003, () =>
+  console.log("App running on http://127.0.0.1:3003")
+);
+// create a new user for a form submission ---cfreate a newuserr.js file ,newuser get route and newuser post route
