@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Makutano Posts</title>
+  </head>
+  <body>
+    <h1>Makutano Posts</h1>
+
+    <ol>
+      <% if (posts && posts.length > 0) { %> <% posts.forEach(post => { %>
+      <li>
+        <h2><%= post.fullname %></h2>
+        <p><%= post.content %></p>
+        <small>Posted at: <%= post.createdat %></small>
+      </li>
+      <% }) %> <% } else { %>
+      <li>No posts available</li>
+      <% } %>
+    </ol>
+  </body>
+</html>
