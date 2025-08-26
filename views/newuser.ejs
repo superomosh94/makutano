@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+</head>
+<body>
+  <h1>Add New User</h1>
+  
+  <form action="/newuser" method="POST">
+    <input type="text" name="fullname" id="fullname" placeholder="Full Name" required />
+    <br />
+    <input type="email" name="email" id="email" placeholder="Email" required />
+    <br />
+    <input type="password" name="password" id="password" placeholder="Password" required />
+    <br />
+    <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" required />
+    <br />
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        event.preventDefault();
+        alert('Passwords do not match');
+      } else if (password.length < 8) {
+        event.preventDefault();
+        alert('Password must be at least 8 characters long');
+      }
+      
+      //clear error
+    });
+  </script>
+</body>
+</html>
