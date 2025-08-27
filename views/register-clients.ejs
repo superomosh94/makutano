@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Registration Form</title>
+  </head>
+  <body>
+    <h2>Client Registration</h2>
+    <form action="/register" method="post">
+      <input
+        type="text"
+        name="firstname"
+        id="firstname"
+        placeholder="First Name"
+        required
+      />
+      <br />
+      <input
+        type="text"
+        name="lastname"
+        id="lastname"
+        placeholder="Last Name"
+        required
+      />
+      <br />
+      <input
+        type="email"
+        name="email"
+        id="email"
+        placeholder="Email"
+        required
+      />
+      <br />
+      <input
+        type="tel"
+        name="phone"
+        id="phone"
+        placeholder="Phone Number"
+        required
+      />
+      <br />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        required
+      />
+      <br />
+      <input
+        type="password"
+        name="confirmPassword"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        required
+      />
+      <br />
+      <input
+        type="number"
+        name="yob"
+        id="yob"
+        placeholder="Year of Birth e.g 1990"
+        required
+      />
+      <br />
+      Gender:
+      <input type="radio" name="gender" value="Male" id="male" required /> Male
+      <input type="radio" name="gender" value="Female" id="female" required />
+      Female
+      <input type="radio" name="gender" value="Other" id="other" required />
+      Other
+      <br />
+      Country:
+      <select name="country" id="country" required>
+        <option value="">Select Country</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Uganda">Uganda</option>
+        <option value="Tanzania">Tanzania</option>
+      </select>
+      <br />
+      City:
+      <input type="text" name="city" id="city" placeholder="City" required />
+      <br />
+      <button type="submit">Register Client</button>
+    </form>
+  </body>
+    <script>
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function (event) {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+    
+        if (password !== confirmPassword) {
+            event.preventDefault();
+            alert("Passwords do not match");
+        } else if (password.length < 8) {
+            event.preventDefault();
+            alert("Password must be at least 8 characters long");
+        }
+    
+        //clear error
+        });
+    </script>
+</html>

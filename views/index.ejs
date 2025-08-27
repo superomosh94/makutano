@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Makutano Social App</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Makutano App</h1>
-    <% if(18>21){ %>
 
-        <h4> Join this app </h3>
-        <p>This is server side rendering</p>
+    <nav>
+      <a href="/posts">View Posts</a> | <a href="/users">List of Users</a> |
+      <a href="/newuser">Register New User</a> |
+      <a href="/login">login</a>
+      <a href="/register">Register Client</a>
+    </nav>
 
-    <% }else{ %>
-
-        <h2> Tokomea!!!!! </h2>
-        <p>Meaning, the server(node) will convert this ejs to pure html before rendering/sending to the browser/client </p>
-
+    <% if (user) { %>
+    <h4>Join this app</h4>
+    <p>This is server-side rendering</p>
+    <% } else { %>
+    <h2>Tokomea!!!!!</h2>
+    <p>
+      The server (Node.js + Express) converts this EJS into pure HTML before
+      sending it to the browser
+    </p>
     <% } %>
 
-    <form action="http://localhost:3003/newposts" method="post">
-        <textarea name="content" id=" 30" rows="10"></textarea>
-        <br>
-        <button type="submit">Submit Post</button>
+    <h3>Create a Post</h3>
+    <form action="/newposts" method="post">
+      <textarea
+        name="content"
+        rows="5"
+        cols="40"
+        placeholder="Write your post..."
+      ></textarea>
+      <br />
+      <button type="submit">Submit Post</button>
     </form>
-
-</body>
+  </body>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registered Clients</title>
+    <script>
+      // Show alert if redirected after successful registration
+      window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("success") === "1") {
+          alert("User registered successfully!");
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Registered Clients</h1>
+
+    <table border="1" cellpadding="8">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (clients && clients.length > 0) { %> <% clients.forEach(client =>
+        { %>
+        <tr>
+          <td><%= client.id %></td>
+          <td><%= client.username %></td>
+          <td><%= client.email %></td>
+        </tr>
+        <% }); %> <% } else { %>
+        <tr>
+          <td colspan="3">No clients found</td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </body>
+</html>
